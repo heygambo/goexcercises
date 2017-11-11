@@ -13,16 +13,25 @@ import (
 )
 
 const maxCount = 1000000000
-const highestDevisor = 20
+const highestDevisor = 25
 
 func main() {
+	number := make(chan int)
+	done := make(chan bool)
+
+
+	
 	for i := 1; i < maxCount; i++ {
 		// fmt.Println("Testing number", i)
-		if isEvenlyDivisable(i) {
-			fmt.Println("Found the number:", i)
-			return
-		}
+		go func () {
+			if isEvenlyDivisable(i) {
+				fmt.Println("Found the number:", i)
+				return
+			}
+		}()
 	}
+
+	<-done
 }
 
 func isEvenlyDivisable(n int) bool {
