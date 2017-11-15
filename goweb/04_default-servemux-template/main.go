@@ -28,7 +28,7 @@ func main() {
 }
 
 func handleHome(w http.ResponseWriter, req *http.Request) {
-	data := struct { Title string }{ "Homepage" }
+	data := struct{ Title string }{"Homepage"}
 	fmt.Println("data", data.Title)
 	err := tpl.ExecuteTemplate(w, "homepage.gohtml", data)
 	if err != nil {
